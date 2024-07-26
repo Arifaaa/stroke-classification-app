@@ -4,3 +4,7 @@ joblib
 numpy
 pandas
 scikit-learn
+seaborn
+altair
+warnings
+time
