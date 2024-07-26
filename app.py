@@ -16,7 +16,7 @@ from sklearn.impute import KNNImputer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 from imblearn.over_sampling import SMOTE
-warnings.filterwarnings("ignore")
+
 
 
 @st.cache_data()
