@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,6 +9,7 @@ import altair as alt
 import warnings
 import time
 
+from streamlit_option_menu import option_menu
 from sklearn.naive_bayes import CategoricalNB, GaussianNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
