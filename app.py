@@ -26,7 +26,7 @@ def progress():
     with st.spinner('Wait for it...'):
         time.sleep(5)
 
-df = pd.read_csv('code/data.csv')
+df = pd.read_csv('data.csv')
 
 data = pd.DataFrame(df)
 
@@ -35,11 +35,11 @@ categorical_features = ['gender', 'hypertension', 'heart_disease', 'ever_married
 continuous_features = ['age', 'avg_glucose_level', 'bmi']
 continuous_features1 = ['age', 'avg_glucose_level']
 
-df_encode = pd.read_excel('code/setelah-encoding.xlsx')
-df_final = pd.read_excel('code/hasil imputasi.xlsx')
+df_encode = pd.read_excel('setelah-encoding.xlsx')
+df_final = pd.read_excel('hasil imputasi.xlsx')
 
-df_outlier_handled = pd.read_excel('code/minmax.xlsx')
-df_dropna_outlier_handled = pd.read_excel('code/drop_minmax.xlsx')
+df_outlier_handled = pd.read_excel('minmax.xlsx')
+df_dropna_outlier_handled = pd.read_excel('drop_minmax.xlsx')
 
 # Define the Dependent and independent variable.
 X_drop = df_dropna_outlier_handled.drop(['stroke'], axis=1)
@@ -58,12 +58,12 @@ X_resampled_k3, y_resampled_k3 = smotek3.fit_resample(X, y)
 X_resampled_k5, y_resampled_k5 = smotek5.fit_resample(X, y)
 X_resampled_k7, y_resampled_k7 = smotek7.fit_resample(X, y)
 
-cat_test = joblib.load('code/model/cat_nbk5_model.pkl')
-gauss_test = joblib.load('code/model/gauss_nbk5_model.pkl')
-label_encoder = joblib.load('code/model/LE.pkl')
-scaler_con = joblib.load('code/model/scaler_con.pkl')
-categorical_features = joblib.load('code/model/cat.pkl')
-continuous_features = joblib.load('code/model/con.pkl')
+cat_test = joblib.load('model/cat_nbk5_model.pkl')
+gauss_test = joblib.load('model/gauss_nbk5_model.pkl')
+label_encoder = joblib.load('model/LE.pkl')
+scaler_con = joblib.load('model/scaler_con.pkl')
+categorical_features = joblib.load('model/cat.pkl')
+continuous_features = joblib.load('model/con.pkl')
 
 def preprocess_new_data(new_data):
     new_data = new_data[categorical_features + continuous_features]
@@ -97,7 +97,7 @@ with st.sidebar:
 
 if (selected == 'Home'):
     st.markdown("<h1 style='text-align: center; '>Implementasi Metode Smote Pada Klasifikasi Penyakit Stroke dengan Algoritma Naive Bayes</h1>", unsafe_allow_html=True)
-    url_logo = 'code/utm.png'
+    url_logo = 'utm.png'
     col1, col2, col3 = st.columns(3)
     with col1:
         st.write(' ')
@@ -176,7 +176,7 @@ if (selected == 'Dataset'):
         st.write("""
             Keterangan Dataset :
         """)
-        ket_data = pd.read_csv('code/ket_data.csv')
+        ket_data = pd.read_csv('ket_data.csv')
         st.dataframe(ket_data)
 
 if (selected == 'Preprocessing'):
@@ -189,11 +189,11 @@ if (selected == 'Preprocessing'):
         value_counts.columns = ['work_type', 'gender', 'count']
         st.dataframe(value_counts, width=500, height=430)
         st.write("#### Menghapus atribut id dan kategori 'other' pada atribut gender")
-        data = pd.read_csv('code/data.csv')
+        data = pd.read_csv('data.csv')
         st.dataframe(data)
     with labelEnc:
         st.write("""Encoding data :""")
-        enc = pd.read_csv('code/enc.csv')
+        enc = pd.read_csv('enc.csv')
         st.dataframe(enc, width=500)
         st.write("""Hasil Encoding data :""")
         st.dataframe(df_encode)
@@ -264,8 +264,8 @@ if (selected == 'Modelling'):
         X_train_k7, X_test_k7, y_train_k7, y_test_k7 = train_test_split(X_resampled_k7, y_resampled_k7, test_size=0.20, random_state=42)
 
 
-        cat_nb = joblib.load('code/model/cat_nb_model.pkl')
-        gauss_nb = joblib.load('code/model/gauss_nb_model.pkl')
+        cat_nb = joblib.load('model/cat_nb_model.pkl')
+        gauss_nb = joblib.load('model/gauss_nb_model.pkl')
         X_train_cat_nb = X_train_nb[categorical_features]
         X_train_cont_nb = X_train_nb[continuous_features1]
         X_test_cat_nb = X_test_nb[categorical_features]
@@ -279,8 +279,8 @@ if (selected == 'Modelling'):
         cm = confusion_matrix(y_test_nb,combined_preds)
 
 
-        cat_knn = joblib.load('code/model/cat_knn_model.pkl')
-        gauss_knn = joblib.load('code/model/gauss_knn_model.pkl')
+        cat_knn = joblib.load('model/cat_knn_model.pkl')
+        gauss_knn = joblib.load('model/gauss_knn_model.pkl')
         X_train_cat_knn = X_train_knn[categorical_features]
         X_train_cont_knn = X_train_knn[continuous_features]
         X_test_cat_knn = X_test_knn[categorical_features]
@@ -293,8 +293,8 @@ if (selected == 'Modelling'):
         report_knn = classification_report(y_test_knn, combined_preds_knn)
         cm_knn = confusion_matrix(y_test_knn,combined_preds_knn)
 
-        cat_k3 = joblib.load('code/model/cat_nbk7_model.pkl')
-        gauss_k3 = joblib.load('code/model/gauss_nbk7_model.pkl')
+        cat_k3 = joblib.load('model/cat_nbk7_model.pkl')
+        gauss_k3 = joblib.load('model/gauss_nbk7_model.pkl')
         X_train_cat_k3 = X_train_k3[categorical_features]
         X_train_cont_k3 = X_train_k3[continuous_features]
         X_test_cat_k3 = X_test_k3[categorical_features]
@@ -321,8 +321,8 @@ if (selected == 'Modelling'):
         report_k5 = classification_report(y_test_k5, combined_preds_k5)
         cm5 = confusion_matrix(y_test_k5, combined_preds_k5)
 
-        cat_k7 = joblib.load('code/model/cat_nbk7_model.pkl')
-        gauss_k7 = joblib.load('code/model/gauss_nbk7_model.pkl')
+        cat_k7 = joblib.load('model/cat_nbk7_model.pkl')
+        gauss_k7 = joblib.load('model/gauss_nbk7_model.pkl')
         X_train_cat_k7 = X_train_k7[categorical_features]
         X_train_cont_k7 = X_train_k7[continuous_features]
         X_test_cat_k7 = X_test_k7[categorical_features]
