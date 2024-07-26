@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
-import warnings
 import time
 
 from streamlit_option_menu import option_menu
