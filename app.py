@@ -291,8 +291,8 @@ if (selected == 'Modelling'):
         report_knn = classification_report(y_test_knn, combined_preds_knn)
         cm_knn = confusion_matrix(y_test_knn,combined_preds_knn)
 
-        cat_k3 = joblib.load('model/cat_nbk7_model.pkl')
-        gauss_k3 = joblib.load('model/gauss_nbk7_model.pkl')
+        cat_k3 = joblib.load('model/cat_nbk3_model.pkl')
+        gauss_k3 = joblib.load('model/gauss_nbk3_model.pkl')
         X_train_cat_k3 = X_train_k3[categorical_features]
         X_train_cont_k3 = X_train_k3[continuous_features]
         X_test_cat_k3 = X_test_k3[categorical_features]
@@ -305,8 +305,8 @@ if (selected == 'Modelling'):
         report_k3 = classification_report(y_test_k3, combined_preds_k3)
         cm3 = confusion_matrix(y_test_k3, combined_preds_k3)
 
-        cat_k5 = joblib.load('code/model/cat_nbk7_model.pkl')
-        gauss_k5 = joblib.load('code/model/gauss_nbk7_model.pkl')
+        cat_k5 = joblib.load('model/cat_nbk5_model.pkl')
+        gauss_k5 = joblib.load('model/gauss_nbk5_model.pkl')
         X_train_cat_k5 = X_train_k5[categorical_features]
         X_train_cont_k5 = X_train_k5[continuous_features]
         X_test_cat_k5 = X_test_k5[categorical_features]
