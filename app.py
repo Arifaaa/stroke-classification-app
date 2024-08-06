@@ -19,7 +19,7 @@ from sklearn.preprocessing import LabelEncoder
 from imblearn.over_sampling import SMOTE
 
 
-
+st.set_page_config(page_title="Arifatul Maghfiroh", page_icon='utm.png')
 @st.cache_data()
 def progress():
     with st.spinner('Wait for it...'):
